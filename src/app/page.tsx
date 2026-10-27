@@ -59,8 +59,11 @@ export default function Home() {
           <source src="/hero-reel.mp4" type="video/mp4" />
         </video>
 
+        {/* Film grain noise overlay */}
+        <div className="film-grain" />
+
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 z-[5] bg-black/60" />
 
         {/* Hero content */}
         <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-6 text-center">
