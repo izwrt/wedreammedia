@@ -275,7 +275,7 @@ export default function AboutPage() {
               transition={{ duration: 1, ease: cinematicEase }}
               className="font-heading text-3xl md:text-5xl font-black uppercase leading-tight mb-8 tracking-tighter"
             >
-              Want to work with us? Leave us a message!
+              Want to work with us? Leave us a message
             </motion.h2>
           </div>
 
