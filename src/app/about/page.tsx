@@ -55,16 +55,14 @@ export default function AboutPage() {
       />
 
       {/* Film grain overlay */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="fixed inset-0 z-[4] h-full w-full object-cover pointer-events-none opacity-40"
-        style={{ mixBlendMode: "screen" }}
-      >
-        <source src="/film-grain.mp4" type="video/mp4" />
-      </video>
+      <div
+        className="fixed inset-0 z-[4] pointer-events-none opacity-50"
+        style={{
+          backgroundImage: "url('/grain.png')",
+          backgroundSize: "cover",
+          mixBlendMode: "overlay",
+        }}
+      />
 
       {/* ─── Hero Manifesto ─── */}
       <section className="relative z-10 flex flex-col items-center justify-center mt-40 px-8 pt-16 pb-32 md:px-16 md:pt-24 md:pb-40 text-center">
