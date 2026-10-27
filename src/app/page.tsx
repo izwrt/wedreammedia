@@ -60,14 +60,16 @@ export default function Home() {
         </video>
 
         {/* Film grain overlay */}
-        <div
-          className="absolute inset-0 z-[4] pointer-events-none opacity-50"
-          style={{
-            backgroundImage: "url('/grain.png')",
-            backgroundSize: "cover",
-            mixBlendMode: "overlay",
-          }}
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 z-[4] h-full w-full object-cover pointer-events-none opacity-50"
+          style={{ mixBlendMode: "overlay" }}
+        >
+          <source src="/grain.mp4" type="video/mp4" />
+        </video>
 
         {/* Dark overlay */}
         <div className="absolute inset-0 z-[5] bg-black/60" />
