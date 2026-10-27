@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 const cinematicEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -24,6 +25,48 @@ const philosophies = [
       "We execute at the highest level. From the first storyboard to the final render, we deliver absolute perfection.",
   },
 ];
+
+function FilmGrain() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    const w = 256;
+    const h = 256;
+    canvas.width = w;
+    canvas.height = h;
+
+    const frame = () => {
+      const imageData = ctx.createImageData(w, h);
+      const data = imageData.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const v = Math.random() * 255;
+        data[i] = v;
+        data[i + 1] = v;
+        data[i + 2] = v;
+        data[i + 3] = 255;
+      }
+      ctx.putImageData(imageData, 0, 0);
+      animId = requestAnimationFrame(frame);
+    };
+    frame();
+
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 z-[4] h-full w-full pointer-events-none opacity-[0.12]"
+      style={{ mixBlendMode: "overlay" }}
+    />
+  );
+}
 
 export default function AboutPage() {
   return (
@@ -55,7 +98,7 @@ export default function AboutPage() {
       />
 
       {/* Film grain noise overlay */}
-      <div className="film-grain" />
+      <FilmGrain />
 
       {/* ─── Hero Manifesto ─── */}
       <section className="relative z-10 flex flex-col items-center justify-center mt-40 px-8 pt-16 pb-32 md:px-16 md:pt-24 md:pb-40 text-center">
