@@ -1,26 +1,42 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: erbaum, sans-serif;
+  --font-body: erbaum, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    background: #000;
+    color: #fff;
+    font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    cursor: url("/cursor-play.svg") 12 16, auto;
+  }
+
+  a,
+  button,
+  [role="button"] {
+    cursor: url("/cursor-play.svg") 12 16, pointer;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Glass-morphism navbar */
+@layer components {
+  .navbar-glass {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .hamburger-line {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
