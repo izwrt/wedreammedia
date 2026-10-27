@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -44,84 +43,27 @@ const services = [
 
 const cinematicEase = [0.16, 1, 0.3, 1] as const;
 
-const videos = ["/vid1.mp4", "/vid2.mp4", "/vid3.mp4", "/vid4.mp4", "/vid5.mp4"];
-
 export default function Home() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [flash, setFlash] = useState(false);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
-  // Cycle to the next video every 3.5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % videos.length);
-    }, 3500);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Speed-ramp + radio flash on each transition
-  useEffect(() => {
-    setFlash(true);
-    const flashTimer = setTimeout(() => setFlash(false), 200);
-
-    const video = videoRefs.current[currentIndex];
-    if (video) {
-      video.currentTime = 0;
-      video.playbackRate = 3.0;
-
-      const rampTimer = setTimeout(() => {
-        video.playbackRate = 0.5;
-      }, 1000);
-
-      return () => {
-        clearTimeout(flashTimer);
-        clearTimeout(rampTimer);
-      };
-    }
-
-    return () => clearTimeout(flashTimer);
-  }, [currentIndex]);
-
   return (
     <>
       {/* ─── Hero Section ─── */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-black">
-        {/* Video Sequence Engine */}
-        {videos.map((src, index) => (
-          <motion.video
-            key={src}
-            ref={(el) => {
-              videoRefs.current[index] = el;
-            }}
-            src={src}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
-              index === currentIndex ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
-
-        {/* Radio Flash Overlay */}
-        <AnimatePresence>
-          {flash && (
-            <motion.div
-              initial={{ opacity: 0.8, backgroundColor: "#ffffff" }}
-              animate={{ opacity: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0 z-[5] pointer-events-none mix-blend-overlay"
-            />
-          )}
-        </AnimatePresence>
+      <section className="relative h-screen w-full overflow-hidden">
+        {/* Background hero reel */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/hero-reel.mp4" type="video/mp4" />
+        </video>
 
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute inset-0 bg-black/60" />
 
         {/* Hero content */}
-        <div className="relative z-20 flex h-screen w-full flex-col items-center justify-center px-6 text-center">
+        <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-6 text-center">
           <motion.h1
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
