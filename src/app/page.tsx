@@ -48,10 +48,7 @@ export default function Home() {
     <>
       {/* ─── Hero Section ─── */}
       <section className="relative h-screen w-full overflow-hidden">
-        {/* Background — swap the div for a <video> when assets are ready */}
-        <div className="absolute inset-0 bg-zinc-950" />
-
-        {/* If using video, uncomment below and remove the div above:
+        {/* Background hero reel */}
         <video
           autoPlay
           muted
@@ -61,7 +58,6 @@ export default function Home() {
         >
           <source src="/hero-reel.mp4" type="video/mp4" />
         </video>
-        */}
 
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60" />
@@ -162,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* ─── Collaborate Section ─── */}
-      <section className="w-full py-32 px-8 md:px-16 bg-black text-white grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="w-full pb-16 px-8 md:px-16 bg-black text-white grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Column — Text */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
