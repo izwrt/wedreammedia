@@ -256,7 +256,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── Contact / Collaborate ─── */}
-      <section className="relative z-10 w-full py-32 px-8 md:px-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="relative z-10 w-full pb-20 px-8 md:px-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Left Column — Text (centered) */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
