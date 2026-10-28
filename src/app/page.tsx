@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const services = [
   {
@@ -42,6 +43,133 @@ const services = [
 ];
 
 const cinematicEase = [0.16, 1, 0.3, 1] as const;
+
+function ServicesSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.3, 0.7], [1.15, 1.05, 1]);
+  const imageRotate = useTransform(scrollYProgress, [0, 1], [2, -1]);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="w-full min-h-screen bg-black text-white py-32 px-8 md:px-16 relative overflow-hidden"
+    >
+      {/* Section Header */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <p className="font-body text-sm uppercase tracking-[0.3em] text-gray-400 mb-4">
+          What We Do
+        </p>
+      </motion.div>
+
+      {/* Cinematic Text Reveal */}
+      <div className="overflow-hidden">
+        <motion.h2
+          initial={{ y: "100%" }}
+          whileInView={{ y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: cinematicEase }}
+          className="font-heading text-5xl md:text-7xl font-black uppercase tracking-tighter"
+        >
+          Our Services
+        </motion.h2>
+      </div>
+
+      {/* Grid Breaker Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-20">
+        {/* Left Side — Parallax Cinematic Image */}
+        <div className="lg:col-span-4">
+          <motion.div
+            initial={{ opacity: 0, clipPath: "inset(100% 0 0 0)" }}
+            whileInView={{ opacity: 1, clipPath: "inset(0% 0 0 0)" }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.4, ease: cinematicEase }}
+            className="relative w-full h-[500px] lg:h-full rounded-2xl overflow-hidden"
+          >
+            <motion.img
+              src="/production.jpg"
+              alt="Production setup"
+              className="w-full h-full object-cover will-change-transform"
+              style={{ y: imageY, scale: imageScale, rotate: imageRotate }}
+            />
+
+            {/* Gradient overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+
+            {/* Text on image */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="absolute bottom-8 left-8 right-8"
+            >
+              <p className="font-heading text-3xl md:text-4xl font-black uppercase tracking-tight leading-tight">
+                Crafted with
+                <br />
+                <span className="text-white/40">Precision</span>
+              </p>
+              <div className="mt-4 h-px w-16 bg-white/30" />
+            </motion.div>
+
+            {/* Corner accents */}
+            <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-white/20" />
+            <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-white/20" />
+            <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-white/20" />
+            <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-white/20" />
+          </motion.div>
+        </div>
+
+        {/* Right Side — Service Cards */}
+        <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {services.map((service, i) => (
+            <motion.div
+              key={service.num}
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.8,
+                ease: cinematicEase,
+                delay: (i + 1) * 0.1,
+              }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="group relative border border-white/10 bg-white/[0.02] p-10 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-white/30 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+            >
+              {/* Oversized number */}
+              <span className="absolute top-6 right-6 text-5xl font-black text-white/5 transition-colors duration-500 group-hover:text-white/20 font-heading">
+                {service.num}
+              </span>
+
+              {/* Hover glow line */}
+              <div className="absolute top-0 left-0 h-[2px] w-0 bg-white transition-all duration-700 group-hover:w-full" />
+
+              {/* Content */}
+              <h3 className="font-heading text-2xl font-bold uppercase mb-4 tracking-tight">
+                {service.title}
+              </h3>
+              <p className="font-body text-sm text-gray-400 leading-relaxed">
+                {service.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   return (
@@ -107,67 +235,7 @@ export default function Home() {
       </section>
 
       {/* ─── Services Section ─── */}
-      <section className="w-full min-h-screen bg-black text-white py-32 px-8 md:px-16 relative overflow-hidden">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="font-body text-sm uppercase tracking-[0.3em] text-gray-400 mb-4">
-            What We Do
-          </p>
-        </motion.div>
-
-        {/* Cinematic Text Reveal */}
-        <div className="overflow-hidden">
-          <motion.h2
-            initial={{ y: "100%" }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: cinematicEase }}
-            className="font-heading text-5xl md:text-7xl font-black uppercase tracking-tighter"
-          >
-            Our Services
-          </motion.h2>
-        </div>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-20">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.num}
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.8,
-                ease: cinematicEase,
-                delay: (i + 1) * 0.1,
-              }}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group relative border border-white/10 bg-white/[0.02] p-10 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-white/30 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]"
-            >
-              {/* Oversized number */}
-              <span className="absolute top-6 right-6 text-5xl font-black text-white/5 transition-colors duration-500 group-hover:text-white/20 font-heading">
-                {service.num}
-              </span>
-
-              {/* Hover glow line */}
-              <div className="absolute top-0 left-0 h-[2px] w-0 bg-white transition-all duration-700 group-hover:w-full" />
-
-              {/* Content */}
-              <h3 className="font-heading text-2xl font-bold uppercase mb-4 tracking-tight">
-                {service.title}
-              </h3>
-              <p className="font-body text-sm text-gray-400 leading-relaxed">
-                {service.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      <ServicesSection />
 
       {/* ─── Collaborate Section ─── */}
       <section className="w-full pb-16 px-8 md:px-16 bg-black text-white grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
