@@ -138,8 +138,7 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="flex flex-col md:flex-row justify-between items-center text-[10px] text-zinc-600 uppercase tracking-[0.3em] mt-8">
-        <span>© 2026 We Dream Media Inc.</span>
-        <span>All Rights Reserved.</span>
+        <span>© {new Date().getFullYear()} WE DREAM MEDIA™. ALL RIGHTS RESERVED.</span>
       </div>
     </footer>
   );
