@@ -1,7 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
+  const [year, setYear] = useState("2026");
+  useEffect(() => {
+    setYear(String(new Date().getFullYear()));
+  }, []);
   return (
     <footer className="w-full bg-black text-white pt-32 pb-8 px-8 md:px-16 border-t border-white/5 overflow-hidden">
       {/* Top Grid */}
@@ -144,7 +151,7 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="flex flex-col md:flex-row justify-between items-center text-[10px] text-zinc-600 uppercase tracking-[0.3em] mt-8 gap-2">
-        <span>© {new Date().getFullYear()} WE DREAM MEDIA™. ALL RIGHTS RESERVED.</span>
+        <span>© {year} WE DREAM MEDIA™. ALL RIGHTS RESERVED.</span>
         <Link href="/terms" className="hover:text-zinc-400 transition-colors">
           Terms & Conditions
         </Link>
