@@ -59,6 +59,7 @@ function ServicesSection() {
 
   return (
     <section
+      id="services"
       ref={sectionRef}
       className="w-full min-h-screen bg-black text-white py-32 px-8 md:px-16 relative overflow-hidden"
     >
@@ -223,15 +224,33 @@ export default function Home() {
             Turning Visions Into Digital Reality.
           </motion.p>
 
-          <motion.a
-            href="#work"
+          <motion.div
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-            className="font-body mt-14 inline-block border-2 border-white px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] text-white transition-all duration-300 hover:bg-white hover:text-black md:text-sm"
+            className="mt-14 flex flex-col sm:flex-row gap-4"
           >
-            View Our Work
-          </motion.a>
+            <a
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="font-body inline-block border-2 border-white px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] text-white transition-all duration-300 hover:bg-white hover:text-black md:text-sm"
+            >
+              View Our Services
+            </a>
+            <a
+              href="#collaborate"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("collaborate")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="font-body inline-block border-2 border-white/30 px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] text-white/70 transition-all duration-300 hover:border-white hover:text-white md:text-sm"
+            >
+              Work With Us
+            </a>
+          </motion.div>
         </div>
       </section>
 
@@ -239,7 +258,7 @@ export default function Home() {
       <ServicesSection />
 
       {/* ─── Collaborate Section ─── */}
-      <section className="w-full pb-16 px-8 md:px-16 bg-black text-white grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section id="collaborate" className="w-full pb-16 px-8 md:px-16 bg-black text-white grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Column — Text */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
