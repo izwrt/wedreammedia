@@ -37,6 +37,12 @@ export default function Footer() {
           >
             About Us
           </Link>
+          <Link
+            href="/terms"
+            className="text-sm font-bold uppercase tracking-widest hover:text-gray-400 transition-colors block mb-4"
+          >
+            Terms
+          </Link>
         </div>
 
         {/* Col 3 — Contact */}
@@ -137,8 +143,11 @@ export default function Footer() {
       </h1>
 
       {/* Copyright */}
-      <div className="flex flex-col md:flex-row justify-between items-center text-[10px] text-zinc-600 uppercase tracking-[0.3em] mt-8">
+      <div className="flex flex-col md:flex-row justify-between items-center text-[10px] text-zinc-600 uppercase tracking-[0.3em] mt-8 gap-2">
         <span>© {new Date().getFullYear()} WE DREAM MEDIA™. ALL RIGHTS RESERVED.</span>
+        <Link href="/terms" className="hover:text-zinc-400 transition-colors">
+          Terms & Conditions
+        </Link>
       </div>
     </footer>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ContactForm from "@/components/ContactForm";
 
 const cinematicEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -309,83 +310,7 @@ export default function AboutPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: cinematicEase, delay: 0.2 }}
         >
-          <form>
-            {/* First & Last Name */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="text-xs uppercase tracking-widest text-zinc-300 mb-2 block">
-                  First Name <span className="text-sm text-amber-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="firstName"
-                  placeholder="First Name"
-                  required
-                  className="w-full bg-transparent border border-zinc-800 px-4 py-3 text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors mb-4"
-                />
-              </div>
-              <div>
-                <label className="text-xs uppercase tracking-widest text-zinc-300 mb-2 block">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  name="lastName"
-                  placeholder="Last Name"
-                  className="w-full bg-transparent border border-zinc-800 px-4 py-3 text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors mb-4"
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="text-xs uppercase tracking-widest text-zinc-300 mb-2 block">
-                Email <span className="text-sm text-amber-500">*</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                required
-                className="w-full bg-transparent border border-zinc-800 px-4 py-3 text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors mb-4"
-              />
-            </div>
-
-            {/* Subject */}
-            <div>
-              <label className="text-xs uppercase tracking-widest text-zinc-300 mb-2 block">
-                Subject
-              </label>
-              <input
-                type="text"
-                name="subject"
-                placeholder="Subject"
-                className="w-full bg-transparent border border-zinc-800 px-4 py-3 text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors mb-4"
-              />
-            </div>
-
-            {/* Message */}
-            <div>
-              <label className="text-xs uppercase tracking-widest text-zinc-300 mb-2 block">
-                Your Message <span className="text-sm text-amber-500">*</span>
-              </label>
-              <textarea
-                name="message"
-                rows={3}
-                placeholder="Your Message"
-                required
-                className="w-full bg-transparent border border-zinc-800 px-4 py-3 text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors mb-4 resize-none"
-              />
-            </div>
-
-            {/* Submit */}
-            <button
-              type="submit"
-              className="font-body border border-white px-8 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all duration-300"
-            >
-              Submit Form
-            </button>
-          </form>
+          <ContactForm />
         </motion.div>
       </section>
     </main>

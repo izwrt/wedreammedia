@@ -9,6 +9,7 @@ import React, { useState } from "react";
 const navLinks = [
   { name: "HOME", path: "/" },
   { name: "ABOUT US", path: "/about" },
+  { name: "TERMS", path: "/terms" },
 ];
 
 const ease1: [number, number, number, number] = [0.22, 1, 0.36, 1];
