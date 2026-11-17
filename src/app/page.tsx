@@ -234,7 +234,7 @@ export default function Home() {
               href="#services"
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+                document.getElementById("services")?.scrollIntoView({ behavior: "smooth", block: "start" });
               }}
               className="font-body inline-block border-2 border-white px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] text-white transition-all duration-300 hover:bg-white hover:text-black md:text-sm"
             >
@@ -244,7 +244,7 @@ export default function Home() {
               href="#collaborate"
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById("collaborate")?.scrollIntoView({ behavior: "smooth" });
+                document.getElementById("collaborate")?.scrollIntoView({ behavior: "smooth", block: "center" });
               }}
               className="font-body inline-block border-2 border-white/30 px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] text-white/70 transition-all duration-300 hover:border-white hover:text-white md:text-sm"
             >
