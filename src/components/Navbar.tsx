@@ -51,8 +51,6 @@ export default function Navbar() {
 
   const { scrollY } = useScroll();
 
-  if (hiddenNavPaths.includes(pathname)) return null;
-
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 50);
   });
@@ -64,6 +62,8 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  if (hiddenNavPaths.includes(pathname)) return null;
 
   const slashTarget = hoveredLink ?? pathname;
 
