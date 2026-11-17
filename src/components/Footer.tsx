@@ -39,6 +39,12 @@ export default function Footer() {
             Home
           </Link>
           <Link
+            href="/services"
+            className="text-sm font-bold uppercase tracking-widest hover:text-gray-400 transition-colors block mb-4"
+          >
+            Services
+          </Link>
+          <Link
             href="/about"
             className="text-sm font-bold uppercase tracking-widest hover:text-gray-400 transition-colors block mb-4"
           >

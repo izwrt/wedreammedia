@@ -8,6 +8,7 @@ import React, { useState } from "react";
 
 const navLinks = [
   { name: "HOME", path: "/" },
+  { name: "SERVICES", path: "/services" },
   { name: "ABOUT US", path: "/about" },
   { name: "TERMS", path: "/terms" },
 ];

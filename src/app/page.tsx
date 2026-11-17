@@ -231,11 +231,7 @@ export default function Home() {
             className="mt-14 flex flex-col sm:flex-row gap-4"
           >
             <a
-              href="#services"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("services")?.scrollIntoView({ behavior: "smooth", block: "start" });
-              }}
+              href="/services"
               className="font-body inline-block border-2 border-white px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] text-white transition-all duration-300 hover:bg-white hover:text-black md:text-sm"
             >
               View Our Services
