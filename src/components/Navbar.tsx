@@ -40,6 +40,8 @@ const linkVariants = {
   }),
 };
 
+const hiddenNavPaths = ["/services/production", "/services/editing"];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -48,6 +50,8 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const { scrollY } = useScroll();
+
+  if (hiddenNavPaths.includes(pathname)) return null;
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 50);

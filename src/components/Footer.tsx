@@ -2,13 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
+const hiddenFooterPaths = ["/services/production", "/services/editing"];
+
 export default function Footer() {
+  const pathname = usePathname();
   const [year, setYear] = useState("2026");
   useEffect(() => {
     setYear(String(new Date().getFullYear()));
   }, []);
+
+  if (hiddenFooterPaths.includes(pathname)) return null;
   return (
     <footer className="w-full bg-black text-white pt-32 pb-8 px-8 md:px-16 border-t border-white/5 overflow-hidden">
       {/* Top Grid */}
