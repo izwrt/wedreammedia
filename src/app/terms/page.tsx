@@ -28,11 +28,23 @@ const policies = [
     title: "Cancellation Policy",
     points: [
       "If the client fails to inform us about any timing changes before 6:00 PM on the day prior to the shoot, the session will be marked as cancelled.",
+      "Cancellations must be communicated at least 48 hours (2 days) before the scheduled shoot date via WhatsApp, Email, or Instagram.",
+      "If the client cancels within 48 hours of the shoot or fails to show up, the advance payment (50%) will not be refunded.",
       "This policy is strictly enforced to ensure fairness to all our clients and to maintain our commitment to punctuality.",
     ],
   },
   {
     num: "04",
+    title: "Refund Policy",
+    points: [
+      "Cancellations made 48 hours or more before the shoot date are eligible for a full refund of the advance payment.",
+      "Cancellations made within 48 hours of the shoot date are non-refundable, as our team, equipment, and schedule have already been committed.",
+      "In the rare event that We Dream Media cancels a shoot, the client will receive a complete refund or the option to reschedule at no extra cost.",
+      "No refunds will be issued after the shoot has been completed.",
+    ],
+  },
+  {
+    num: "05",
     title: "Why This Matters",
     points: [
       "We respect every client's time equally and strive to deliver the highest standard of service.",
