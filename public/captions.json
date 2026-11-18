@@ -1,0 +1,26 @@
+[
+  {
+    "id": "hormozi",
+    "name": "Hormozi Style",
+    "description": "Bold, punchy captions with high contrast colors. Words pop on screen with scale animations.",
+    "video": "/demos/hormozi.mp4"
+  },
+  {
+    "id": "minimal",
+    "name": "Minimal Clean",
+    "description": "Sleek, lowercase captions with subtle fade-ins. Minimal motion, maximum readability.",
+    "video": "/demos/minimal.mp4"
+  },
+  {
+    "id": "kinetic",
+    "name": "Kinetic Type",
+    "description": "Dynamic text that moves with the beat. Words fly, rotate, and scale with energy.",
+    "video": "/demos/kinetic.mp4"
+  },
+  {
+    "id": "subtitle",
+    "name": "Classic Subtitle",
+    "description": "Clean bottom-aligned subtitles with word-by-word highlight. Professional and familiar.",
+    "video": "/demos/subtitle.mp4"
+  }
+]
