@@ -31,6 +31,7 @@ export default function ShortFormPage() {
   const [activeCaption, setActiveCaption] = useState<CaptionStyle | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showInfo, setShowInfo] = useState<string | null>(null);
 
   useEffect(() => {
     if (!FOLDER_ID || !API_KEY) {
@@ -77,7 +78,7 @@ export default function ShortFormPage() {
       <BackButton href="/services/editing" />
 
       {/* ─── Hero ─── */}
-      <section className="relative flex items-center justify-center pt-44 pb-12 px-6 md:px-16 overflow-hidden">
+      <section className="relative flex items-center justify-center pt-28 pb-6 md:pt-44 md:pb-12 px-6 md:px-16 overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <span className="font-heading text-[10vw] font-black uppercase text-white/[0.02] tracking-tighter leading-none select-none">
             Reels
@@ -116,7 +117,7 @@ export default function ShortFormPage() {
       </section>
 
       {/* ─── iPhone Preview + Caption Selector ─── */}
-      <section className="max-w-6xl mx-auto px-6 md:px-16 py-16">
+      <section className="max-w-6xl mx-auto px-6 md:px-16 py-8 md:py-16">
         {loading ? (
           <div className="flex items-center justify-center py-32">
             <div className="w-8 h-8 border-2 border-amber-500/30 border-t-amber-500 rounded-full animate-spin" />
@@ -130,17 +131,17 @@ export default function ShortFormPage() {
             <p className="font-body text-sm text-zinc-600">No caption styles available yet. Check back soon.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-20 items-start">
             {/* Left — iPhone Mockup */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: cinematicEase, delay: 0.4 }}
-              className="flex justify-center lg:sticky lg:top-32"
+              className="flex flex-col items-center lg:sticky lg:top-32 w-full"
             >
               <div className="relative">
                 {/* iPhone Frame */}
-                <div className="relative w-[280px] md:w-[300px] rounded-[48px] border-[6px] border-zinc-800 bg-black overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)]">
+                <div className="relative w-[260px] md:w-[300px] rounded-[48px] border-[6px] border-zinc-800 bg-black overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)]">
                   {/* Dynamic Island */}
                   <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[90px] h-[28px] bg-black rounded-full z-30" />
 
@@ -189,7 +190,6 @@ export default function ShortFormPage() {
 
                     {/* Instagram-style bottom overlay */}
                     <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/80 via-black/30 to-transparent pb-6 pt-16 px-4 pointer-events-none">
-                      {/* Engagement icons (right side) */}
                       <div className="absolute right-3 bottom-16 flex flex-col items-center gap-5">
                         {[
                           { icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z", label: "24.5K" },
@@ -204,8 +204,6 @@ export default function ShortFormPage() {
                           </div>
                         ))}
                       </div>
-
-                      {/* Caption preview text */}
                       {activeCaption && (
                         <p className="text-[10px] text-white/90 leading-relaxed pr-12">
                           <span className="font-bold">wedreammedia</span>{" "}
@@ -215,17 +213,174 @@ export default function ShortFormPage() {
                     </div>
                   </div>
                 </div>
-
-                {/* Reflection glow */}
                 <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-16 bg-amber-500/5 blur-3xl rounded-full" />
+              </div>
+
+              {/* ─── Mobile: Full Cards without description + info icon ─── */}
+              <div className="lg:hidden w-full mt-8 space-y-3">
+                {captionStyles.map((style) => (
+                  <div key={style.id} className="relative">
+                    <button
+                      onClick={() => { setActiveCaption(style); setShowInfo(null); }}
+                      className={`w-full text-left p-5 border rounded-xl transition-all duration-500 relative overflow-hidden ${
+                        activeCaption?.id === style.id
+                          ? "border-amber-500/50 bg-amber-500/[0.05]"
+                          : "border-white/10 bg-white/[0.02]"
+                      }`}
+                    >
+                      <div
+                        className={`absolute top-0 left-0 h-full w-[3px] transition-all duration-500 ${
+                          activeCaption?.id === style.id ? "bg-amber-500" : "bg-transparent"
+                        }`}
+                      />
+
+                      <div className="flex items-center justify-between gap-3">
+                        <h3
+                          className={`font-heading text-base font-bold uppercase tracking-tight transition-colors duration-300 ${
+                            activeCaption?.id === style.id ? "text-amber-500" : "text-white"
+                          }`}
+                        >
+                          {style.name}
+                        </h3>
+
+                        <div className="flex items-center gap-3">
+                          {/* Info icon */}
+                          {style.description && (
+                            <div
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setShowInfo(showInfo === style.id ? null : style.id);
+                              }}
+                              className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 active:scale-90 transition-all duration-300 ${
+                                showInfo === style.id
+                                  ? "bg-amber-500/20 text-amber-500"
+                                  : "bg-white/5 text-zinc-500"
+                              }`}
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                <circle cx="12" cy="12" r="10" strokeWidth={1.5} />
+                                <path strokeLinecap="round" d="M12 16v-4m0-4h.01" />
+                              </svg>
+                            </div>
+                          )}
+
+                          {/* Play indicator */}
+                          <div
+                            className={`shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+                              activeCaption?.id === style.id
+                                ? "bg-amber-500 text-black"
+                                : "bg-white/5 text-white/30"
+                            }`}
+                          >
+                            {activeCaption?.id === style.id ? (
+                              <motion.div
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ type: "spring", stiffness: 300 }}
+                                className="flex items-center gap-[2px]"
+                              >
+                                {[1, 2, 3].map((bar) => (
+                                  <motion.div
+                                    key={bar}
+                                    className="w-[2.5px] bg-black rounded-full"
+                                    animate={{ height: [6, 14, 6] }}
+                                    transition={{
+                                      duration: 0.8,
+                                      repeat: Infinity,
+                                      delay: bar * 0.15,
+                                      ease: "easeInOut",
+                                    }}
+                                  />
+                                ))}
+                              </motion.div>
+                            ) : (
+                              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                              </svg>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+
+                    {/* Info dropdown */}
+                    <AnimatePresence>
+                      {showInfo === style.id && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.25 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="bg-white/[0.03] border border-white/5 border-t-0 rounded-b-xl px-5 py-3 flex items-start justify-between gap-3">
+                            <p className="font-body text-xs text-zinc-500 leading-relaxed">
+                              {style.description}
+                            </p>
+                            <button
+                              onClick={() => setShowInfo(null)}
+                              className="shrink-0 mt-0.5 text-zinc-600"
+                            >
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+
+                {/* Mobile Disclaimer — expandable */}
+                <div className="border border-white/5 rounded-xl p-4 mt-4">
+                  <button
+                    onClick={() => setShowInfo(showInfo === "disclaimer" ? null : "disclaimer")}
+                    className="w-full flex items-center justify-between"
+                  >
+                    <p className="font-body text-[11px] text-zinc-600 leading-relaxed text-left">
+                      <span className="text-amber-500/60 font-bold">Note:</span> Reference examples only. Caption changes may cost extra.
+                    </p>
+                    <span className="font-body text-[10px] uppercase tracking-wider text-zinc-600 shrink-0 ml-3">
+                      {showInfo === "disclaimer" ? "Less" : "More"}
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {showInfo === "disclaimer" && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-3 mt-3 border-t border-white/5 space-y-2">
+                          <p className="font-body text-[11px] text-zinc-500 leading-relaxed flex items-start gap-2">
+                            <span className="mt-1 w-1 h-1 rounded-full bg-zinc-700 shrink-0" />
+                            These examples are for reference only. We can match the caption structure and style, but we do not promise 100% identical fonts or motion effects.
+                          </p>
+                          <p className="font-body text-[11px] text-zinc-500 leading-relaxed flex items-start gap-2">
+                            <span className="mt-1 w-1 h-1 rounded-full bg-zinc-700 shrink-0" />
+                            We guarantee the structure, timing, and overall feel will match your selected style.
+                          </p>
+                          <p className="font-body text-[11px] text-zinc-400 leading-relaxed flex items-start gap-2 font-semibold">
+                            <span className="mt-1 w-1 h-1 rounded-full bg-amber-500 shrink-0" />
+                            Please select your caption style carefully. Caption changes after editing has started may incur additional charges.
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
             </motion.div>
 
-            {/* Right — Caption Style Selector */}
+            {/* Right — Desktop Caption Style Selector (hidden on mobile) */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: cinematicEase, delay: 0.6 }}
+              className="hidden lg:block"
             >
               <p className="font-body text-xs uppercase tracking-[0.3em] text-zinc-600 mb-6 font-bold">
                 Select a caption style ({captionStyles.length} available)
@@ -245,7 +400,6 @@ export default function ShortFormPage() {
                         : "border-white/10 bg-white/[0.02] hover:border-white/20"
                     }`}
                   >
-                    {/* Active indicator line */}
                     <div
                       className={`absolute top-0 left-0 h-full w-[3px] transition-all duration-500 ${
                         activeCaption?.id === style.id ? "bg-amber-500" : "bg-transparent"
@@ -268,7 +422,6 @@ export default function ShortFormPage() {
                         )}
                       </div>
 
-                      {/* Play indicator */}
                       <div
                         className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                           activeCaption?.id === style.id
@@ -308,7 +461,7 @@ export default function ShortFormPage() {
                 ))}
               </div>
 
-              {/* Disclaimer */}
+              {/* Desktop Disclaimer */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -344,7 +497,7 @@ export default function ShortFormPage() {
       </section>
 
       {/* ─── What You Get ─── */}
-      <section className="max-w-6xl mx-auto px-6 md:px-16 py-24">
+      <section className="max-w-6xl mx-auto px-6 md:px-16 py-12 md:py-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -384,7 +537,7 @@ export default function ShortFormPage() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="max-w-6xl mx-auto px-6 md:px-16 pb-32">
+      <section className="max-w-6xl mx-auto px-6 md:px-16 pb-16 md:pb-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

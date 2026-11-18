@@ -9,7 +9,7 @@ export default function ServicesPage() {
   return (
     <main className="bg-black text-white min-h-screen">
       {/* ─── Hero ─── */}
-      <section className="relative flex items-center justify-center pt-48 pb-16 px-6 md:px-16 overflow-hidden">
+      <section className="relative flex items-center justify-center pt-28 pb-8 md:pt-48 md:pb-16 px-6 md:px-16 overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <span className="font-heading text-[15vw] font-black uppercase text-white/[0.02] tracking-tighter leading-none select-none">
             Services
@@ -48,7 +48,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ─── Two Path Cards ─── */}
-      <section className="max-w-5xl mx-auto px-6 md:px-16 pb-40 pt-8">
+      <section className="max-w-5xl mx-auto px-6 md:px-16 pb-20 md:pb-40 pt-4 md:pt-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Full Production Card */}
           <motion.div

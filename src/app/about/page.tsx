@@ -68,7 +68,7 @@ export default function AboutPage() {
       </video>
 
       {/* ─── Hero Manifesto ─── */}
-      <section className="relative z-10 flex flex-col items-center justify-center mt-40 px-8 pt-16 pb-32 md:px-16 md:pt-24 md:pb-40 text-center">
+      <section className="relative z-10 flex flex-col items-center justify-center mt-24 md:mt-40 px-6 pt-8 pb-16 md:px-16 md:pt-24 md:pb-40 text-center">
         {/* Masked heading reveal */}
         <div className="overflow-hidden">
           <motion.h1
@@ -95,7 +95,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── Our Story ─── */}
-      <section className="relative z-10 px-8 md:px-16 pb-32 max-w-4xl mx-auto">
+      <section className="relative z-10 px-6 md:px-16 pb-16 md:pb-32 max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -117,7 +117,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── Philosophy Grid ─── */}
-      <section className="relative z-10 px-8 md:px-16 pb-32">
+      <section className="relative z-10 px-6 md:px-16 pb-16 md:pb-32">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -180,7 +180,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── Founder / Director ─── */}
-      <section className="relative z-10 px-8 md:px-16 pb-32">
+      <section className="relative z-10 px-6 md:px-16 pb-16 md:pb-32">
         <div className="mt-14 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Column — Portrait */}
           <motion.div

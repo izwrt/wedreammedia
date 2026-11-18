@@ -85,7 +85,7 @@ export default function ProductionPage() {
       <BackButton />
 
       {/* ─── Hero ─── */}
-      <section className="relative flex items-center justify-center pt-48 pb-24 px-6 md:px-16 overflow-hidden">
+      <section className="relative flex items-center justify-center pt-28 pb-12 md:pt-48 md:pb-24 px-6 md:px-16 overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <span className="font-heading text-[12vw] font-black uppercase text-white/[0.02] tracking-tighter leading-none select-none">
             Production
@@ -134,7 +134,7 @@ export default function ProductionPage() {
       </div>
 
       {/* ─── Service Cards ─── */}
-      <section className="max-w-6xl mx-auto px-6 md:px-16 py-32">
+      <section className="max-w-6xl mx-auto px-6 md:px-16 py-16 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

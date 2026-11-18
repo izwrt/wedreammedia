@@ -61,7 +61,7 @@ function ServicesSection() {
     <section
       id="services"
       ref={sectionRef}
-      className="w-full min-h-screen bg-black text-white py-32 px-8 md:px-16 relative overflow-hidden"
+      className="w-full min-h-screen bg-black text-white py-16 md:py-32 px-6 md:px-16 relative overflow-hidden"
     >
       {/* Section Header */}
       <motion.div
