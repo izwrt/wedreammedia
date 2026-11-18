@@ -40,7 +40,7 @@ const linkVariants = {
   }),
 };
 
-const hiddenNavPaths = ["/services/production", "/services/editing"];
+const hiddenNavPaths = ["/services/production", "/services/editing", "/services/editing/short-form"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);

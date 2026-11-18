@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
-const hiddenFooterPaths = ["/services/production", "/services/editing"];
+const hiddenFooterPaths = ["/services/production", "/services/editing", "/services/editing/short-form"];
 
 export default function Footer() {
   const pathname = usePathname();

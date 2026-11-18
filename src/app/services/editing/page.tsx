@@ -14,6 +14,7 @@ const editingServices = [
     subtitle: "Reels · YouTube Shorts · TikTok",
     description:
       "Fast cuts, trending transitions, captions, and sound design — engineered to go viral on every platform.",
+    href: "/services/editing/short-form",
   },
   {
     num: "02",
@@ -21,6 +22,7 @@ const editingServices = [
     subtitle: "YouTube · Documentaries · Vlogs",
     description:
       "Story-driven editing with cinematic pacing. Multi-cam syncing, B-roll integration, and polished exports.",
+    href: null,
   },
   {
     num: "03",
@@ -28,6 +30,7 @@ const editingServices = [
     subtitle: "Artists · Labels · Independent",
     description:
       "Beat-synced cuts, creative color treatments, and visual storytelling that elevates the music.",
+    href: null,
   },
   {
     num: "04",
@@ -35,6 +38,7 @@ const editingServices = [
     subtitle: "Correction · Cinematic Looks · Matching",
     description:
       "Professional color correction and grading. Shot matching, LUT creation, and mood-driven palettes.",
+    href: null,
   },
 ];
 
@@ -167,9 +171,24 @@ export default function EditingPage() {
               <h3 className="font-heading text-xl md:text-2xl font-bold uppercase mb-4 tracking-tight">
                 {service.title}
               </h3>
-              <p className="font-body text-sm text-gray-400 leading-relaxed">
+              <p className="font-body text-sm text-gray-400 leading-relaxed mb-6">
                 {service.description}
               </p>
+              {service.href ? (
+                <Link
+                  href={service.href}
+                  className="font-body inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-amber-500/50 group-hover:text-amber-500 transition-colors duration-300 border-b border-amber-500/10 group-hover:border-amber-500/40 pb-1"
+                >
+                  Know More
+                  <svg className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              ) : (
+                <span className="font-body text-[10px] uppercase tracking-[0.2em] text-zinc-600">
+                  Coming Soon
+                </span>
+              )}
             </motion.div>
           ))}
         </div>
