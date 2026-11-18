@@ -30,11 +30,42 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* ─── Cinematic Background ─── */}
-      <div className="pointer-events-none absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-white/5 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-[-10%] right-[-10%] h-[500px] w-[500px] rounded-full bg-white/[0.03] blur-[100px]" />
+      <motion.div
+        className="pointer-events-none absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-white/5 blur-[120px]"
+        animate={{
+          x: [0, 80, -40, 0],
+          y: [0, -60, 50, 0],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+      <motion.div
+        className="pointer-events-none absolute bottom-[-10%] right-[-10%] h-[500px] w-[500px] rounded-full bg-white/[0.03] blur-[100px]"
+        animate={{
+          x: [0, -60, 30, 0],
+          y: [0, 40, -70, 0],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
 
-      {/* Film grain overlay (CSS — no video decode needed) */}
-      <div className="film-grain fixed inset-0 z-[4]" />
+      {/* Film grain overlay */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="fixed inset-0 z-[4] h-full w-full object-cover pointer-events-none opacity-50"
+        style={{ mixBlendMode: "overlay" }}
+      >
+        <source src="/grain.mp4" type="video/mp4" />
+      </video>
 
       {/* ─── Hero Manifesto ─── */}
       <section className="relative z-10 flex flex-col items-center justify-center mt-24 md:mt-40 px-6 pt-8 pb-16 md:px-16 md:pt-24 md:pb-40 text-center">
