@@ -174,7 +174,7 @@ export default function EditingPage() {
               <p className="font-body text-sm text-gray-400 leading-relaxed mb-6">
                 {service.description}
               </p>
-              {service.href ? (
+              {service.href && (
                 <Link
                   href={service.href}
                   className="font-body inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-amber-500/50 group-hover:text-amber-500 transition-colors duration-300 border-b border-amber-500/10 group-hover:border-amber-500/40 pb-1"
@@ -184,10 +184,6 @@ export default function EditingPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
-              ) : (
-                <span className="font-body text-[10px] uppercase tracking-[0.2em] text-zinc-600">
-                  Coming Soon
-                </span>
               )}
             </motion.div>
           ))}

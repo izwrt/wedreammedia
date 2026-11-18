@@ -13,36 +13,42 @@ const services = [
     title: "Cinematic Production",
     description:
       "Breathtaking music videos, documentaries, and live event coverage — captured with a filmmaker's eye for detail and emotion.",
+    href: null,
   },
   {
     num: "02",
     title: "Brand Films",
     description:
       "Compelling brand stories and commercial content that connect with your audience on an emotional level.",
+    href: null,
   },
   {
     num: "03",
     title: "Podcast Production",
     description:
       "End-to-end audio and video podcast production. Pristine sound, cinematic visuals, fully produced.",
+    href: null,
   },
   {
     num: "04",
     title: "Social Content",
     description:
       "Scroll-stopping reels, shorts, and viral content — shot, edited, and optimized for every platform.",
+    href: "/services/editing/short-form",
   },
   {
     num: "05",
     title: "Event Coverage",
     description:
       "Multi-camera event filming with same-day highlights, full recap edits, and cinematic after-movies.",
+    href: null,
   },
   {
     num: "06",
     title: "Creator Strategy",
     description:
       "Content planning, ideation, and blueprinting designed for creators who want to scale their audience fast.",
+    href: null,
   },
 ];
 
@@ -166,9 +172,20 @@ export default function ProductionPage() {
               <h3 className="font-heading text-xl md:text-2xl font-bold uppercase mb-4 tracking-tight">
                 {service.title}
               </h3>
-              <p className="font-body text-sm text-gray-400 leading-relaxed">
+              <p className="font-body text-sm text-gray-400 leading-relaxed mb-6">
                 {service.description}
               </p>
+              {service.href && (
+                <Link
+                  href={service.href}
+                  className="font-body inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/40 group-hover:text-white transition-colors duration-300 border-b border-white/10 group-hover:border-white/40 pb-1"
+                >
+                  Know More
+                  <svg className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              )}
             </motion.div>
           ))}
         </div>
