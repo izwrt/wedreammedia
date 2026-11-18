@@ -1,13 +1,17 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import BackButton from "@/components/BackButton";
 
 const cinematicEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const FOLDER_ID = process.env.NEXT_PUBLIC_GDRIVE_FOLDER_ID || "";
 const API_KEY = process.env.NEXT_PUBLIC_GDRIVE_API_KEY || "";
+
+function getDriveVideoUrl(fileId: string): string {
+  return `https://drive.google.com/uc?export=download&id=${fileId}`;
+}
 
 interface CaptionStyle {
   id: string;
@@ -32,6 +36,12 @@ export default function ShortFormPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [showInfo, setShowInfo] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleCaptionChange = useCallback((style: CaptionStyle) => {
+    setActiveCaption(style);
+    setShowInfo(null);
+  }, []);
 
   useEffect(() => {
     if (!FOLDER_ID || !API_KEY) {
@@ -172,18 +182,16 @@ export default function ShortFormPage() {
                           className="absolute inset-0"
                         >
                           <video
+                            ref={videoRef}
                             key={activeCaption.videoId}
                             autoPlay
                             muted
                             loop
                             playsInline
+                            preload="auto"
                             className="w-full h-full object-contain bg-black"
-                          >
-                            <source
-                              src={`https://www.googleapis.com/drive/v3/files/${activeCaption.videoId}?alt=media&key=${API_KEY}`}
-                              type="video/mp4"
-                            />
-                          </video>
+                            src={getDriveVideoUrl(activeCaption.videoId)}
+                          />
                         </motion.div>
                       </AnimatePresence>
                     )}
@@ -221,7 +229,7 @@ export default function ShortFormPage() {
                 {captionStyles.map((style) => (
                   <div key={style.id} className="relative">
                     <button
-                      onClick={() => { setActiveCaption(style); setShowInfo(null); }}
+                      onClick={() => handleCaptionChange(style)}
                       className={`w-full text-left p-5 border rounded-xl transition-all duration-500 relative overflow-hidden ${
                         activeCaption?.id === style.id
                           ? "border-amber-500/50 bg-amber-500/[0.05]"

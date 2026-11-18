@@ -184,22 +184,14 @@ export default function Home() {
           muted
           loop
           playsInline
+          preload="auto"
           className="absolute inset-0 h-full w-full object-cover"
         >
           <source src="/hero-reel.mp4" type="video/mp4" />
         </video>
 
-        {/* Film grain overlay */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 z-[4] h-full w-full object-cover pointer-events-none opacity-50"
-          style={{ mixBlendMode: "overlay" }}
-        >
-          <source src="/grain.mp4" type="video/mp4" />
-        </video>
+        {/* Film grain overlay (CSS — no video decode needed) */}
+        <div className="film-grain absolute inset-0 z-[4]" />
 
         {/* Dark overlay */}
         <div className="absolute inset-0 z-[5] bg-black/60" />
