@@ -102,6 +102,8 @@ function ServicesSection() {
             <motion.img
               src="/production.jpg"
               alt="Production setup"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover will-change-transform"
               style={{ y: imageY, scale: imageScale, rotate: imageRotate }}
             />

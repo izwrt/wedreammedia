@@ -10,6 +10,15 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeSpeed;
+}
+
+/* GPU-promote heavy animation layers */
+video,
+iframe {
+  will-change: auto;
+  contain: layout paint;
 }
 
 @layer base {

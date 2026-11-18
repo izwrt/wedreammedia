@@ -2,7 +2,55 @@
   command = "npm run build"
   publish = "out"
 
-# Proxy Google Drive video requests through Netlify (bypasses browser CORS)
+# ─── Performance Headers ───
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Long cache for hashed JS/CSS bundles (immutable)
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache fonts for 1 year
+[[headers]]
+  for = "*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache images for 30 days
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, s-maxage=2592000"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, s-maxage=2592000"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, s-maxage=2592000"
+
+# Cache hero video for 7 days (it's 20MB — CDN edge cache saves bandwidth)
+[[headers]]
+  for = "*.mp4"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, s-maxage=604800"
+
+# HTML pages — revalidate on each visit
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ─── Google Drive Video Proxy (bypasses browser CORS) ───
 [[redirects]]
   from = "/api/drive-video/:fileId"
   to = "https://www.googleapis.com/drive/v3/files/:fileId?alt=media&key=AIzaSyAfcdeEVNYB7sQAB2zhe6KRxjnLWRrwc_U"
