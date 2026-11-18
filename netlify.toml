@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+# Proxy Google Drive video requests through Netlify (bypasses browser CORS)
+[[redirects]]
+  from = "/api/drive-video/:fileId"
+  to = "https://www.googleapis.com/drive/v3/files/:fileId?alt=media&key=AIzaSyAfcdeEVNYB7sQAB2zhe6KRxjnLWRrwc_U"
+  status = 200
+  force = true
+  headers = {Cache-Control = "public, max-age=86400, s-maxage=604800"}

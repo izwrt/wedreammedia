@@ -10,7 +10,10 @@ const FOLDER_ID = process.env.NEXT_PUBLIC_GDRIVE_FOLDER_ID || "";
 const API_KEY = process.env.NEXT_PUBLIC_GDRIVE_API_KEY || "";
 
 function getDriveVideoUrl(fileId: string): string {
-  return `https://drive.google.com/uc?export=download&id=${fileId}`;
+  if (typeof window !== "undefined" && window.location.hostname !== "localhost") {
+    return `/api/drive-video/${fileId}`;
+  }
+  return `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${API_KEY}`;
 }
 
 interface CaptionStyle {
@@ -36,11 +39,13 @@ export default function ShortFormPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [showInfo, setShowInfo] = useState<string | null>(null);
+  const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleCaptionChange = useCallback((style: CaptionStyle) => {
     setActiveCaption(style);
     setShowInfo(null);
+    setVideoError(false);
   }, []);
 
   useEffect(() => {
@@ -181,17 +186,27 @@ export default function ShortFormPage() {
                           transition={{ duration: 0.5, ease: cinematicEase }}
                           className="absolute inset-0"
                         >
-                          <video
-                            ref={videoRef}
-                            key={activeCaption.videoId}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            preload="auto"
-                            className="w-full h-full object-contain bg-black"
-                            src={getDriveVideoUrl(activeCaption.videoId)}
-                          />
+                          {videoError ? (
+                            <div className="w-full h-full flex flex-col items-center justify-center bg-black/90 px-6">
+                              <svg className="w-10 h-10 text-zinc-700 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                              </svg>
+                              <p className="text-[10px] text-zinc-600 text-center leading-relaxed">Preview loading…</p>
+                            </div>
+                          ) : (
+                            <video
+                              ref={videoRef}
+                              key={activeCaption.videoId}
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                              preload="auto"
+                              className="w-full h-full object-contain bg-black"
+                              src={getDriveVideoUrl(activeCaption.videoId)}
+                              onError={() => setVideoError(true)}
+                            />
+                          )}
                         </motion.div>
                       </AnimatePresence>
                     )}
