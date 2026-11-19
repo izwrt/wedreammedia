@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { warmShortFormVideos } from "@/lib/captionVideos";
 import ContactForm from "@/components/ContactForm";
 import BackButton from "@/components/BackButton";
 
@@ -80,6 +82,12 @@ const workflow = [
 ];
 
 export default function ProductionPage() {
+  // Quietly start downloading the short-form preview videos so they're ready on click
+  useEffect(() => {
+    const t = setTimeout(warmShortFormVideos, 1200);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <main className="bg-black text-white min-h-screen">
       <BackButton />

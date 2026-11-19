@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {/* Preload hero video for instant playback */}
         <link rel="preload" href="/hero-reel.mp4" as="video" type="video/mp4" />
       </head>
-      <body className="min-h-screen">
+      <body className="min-h-screen" suppressHydrationWarning>
         <link
           rel="stylesheet"
           href="https://use.typekit.net/wqh8aje.css"
