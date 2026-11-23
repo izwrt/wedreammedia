@@ -101,32 +101,10 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="flex items-center text-sm font-bold uppercase tracking-widest hover:text-gray-400 transition-colors mb-4"
           >
-            <svg
-              className="w-4 h-4 mr-2 shrink-0"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <rect
-                width="20"
-                height="20"
-                x="2"
-                y="2"
-                rx="5"
-                ry="5"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-                strokeWidth="1.5"
-              />
-              <line
-                x1="17.5"
-                x2="17.51"
-                y1="6.5"
-                y2="6.5"
-                strokeWidth="1.5"
-              />
+            <svg className="w-4 h-4 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" strokeWidth="1.5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" strokeWidth="1.5" />
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" strokeWidth="1.5" />
             </svg>
             Instagram
           </a>
@@ -136,22 +114,40 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="flex items-center text-sm font-bold uppercase tracking-widest hover:text-gray-400 transition-colors mb-4"
           >
-            <svg
-              className="w-4 h-4 mr-2 shrink-0"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeWidth="1.5"
-                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"
-              />
-              <polygon
-                strokeWidth="1.5"
-                points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
-              />
+            <svg className="w-4 h-4 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeWidth="1.5" d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z" />
+              <polygon strokeWidth="1.5" points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
             </svg>
             YouTube
+          </a>
+
+          <span className="text-xs uppercase tracking-[0.2em] text-zinc-600 mt-5 mb-3 block">
+            Founder
+          </span>
+          <a
+            href="https://instagram.com/iamishwart"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center text-sm font-bold uppercase tracking-widest hover:text-gray-400 transition-colors mb-4"
+          >
+            <svg className="w-4 h-4 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" strokeWidth="1.5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" strokeWidth="1.5" />
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" strokeWidth="1.5" />
+            </svg>
+            @iamishwart
+          </a>
+          <a
+            href="https://youtube.com/@iamishwart"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center text-sm font-bold uppercase tracking-widest hover:text-gray-400 transition-colors mb-4"
+          >
+            <svg className="w-4 h-4 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeWidth="1.5" d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z" />
+              <polygon strokeWidth="1.5" points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+            </svg>
+            @iamishwart
           </a>
         </div>
       </div>
