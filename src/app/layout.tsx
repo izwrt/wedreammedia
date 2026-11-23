@@ -15,11 +15,11 @@ const SITE = "https://wedreammedia.com";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: {
-    default: "We Dream Media | Cinematic Video Production & Editing — Mangalore",
-    template: "%s | We Dream Media",
+    default: "We Dream Media: Cinematic Production & Video Editing",
+    template: "We Dream Media: %s",
   },
   description:
-    "We Dream Media is a premium cinematic production & video editing agency founded by Ishwar T in Mangalore, India. Music videos, reels, brand films, podcast production & content strategy for creators. Follow @iamishwart on Instagram & YouTube.",
+    "We Dream Media is a premium cinematic production & video editing agency founded by Ishwar T in Mangalore, India. Music videos, reels, short-form content, brand films, podcast production & content strategy for creators.",
   keywords: [
     "We Dream Media", "wedreammedia", "we dream media", "WDM",
     "Ishwar T", "ishwar", "iamishwart",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   alternates: { canonical: SITE },
   openGraph: {
-    title: "We Dream Media | Cinematic Video Production & Editing",
+    title: "We Dream Media: Cinematic Production & Video Editing",
     description:
       "Premium cinematic production & video editing agency by Ishwar T. Music videos, reels, brand films, podcasts — Mangalore, India.",
     siteName: "We Dream Media",
@@ -64,9 +64,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "We Dream Media | Cinematic Video Production",
+    title: "We Dream Media: Cinematic Production & Video Editing",
     description:
-      "Premium cinematic production & video editing by Ishwar T (@iamishwart). Mangalore, India.",
+      "Premium cinematic production & video editing by Ishwar T. Mangalore, India.",
     images: ["/og-image.png"],
     creator: "@iamishwart",
   },

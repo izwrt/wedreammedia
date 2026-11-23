@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Video Editing Services — Short-Form, Long-Form & More",
+  title: { absolute: "We Dream Media: Video Editing" },
   description:
-    "Professional video editing by We Dream Media. Instagram Reels, YouTube Shorts, TikTok edits, long-form YouTube videos, color grading, sound design & caption styling. By Ishwar T, Mangalore.",
+    "Professional video editing by We Dream Media. Instagram Reels, YouTube Shorts, TikTok edits, long-form YouTube videos, color grading, sound design & caption styling. Mangalore, India.",
   alternates: { canonical: "https://wedreammedia.com/services/editing" },
   openGraph: {
-    title: "Video Editing — We Dream Media",
+    title: "We Dream Media: Video Editing",
     description:
       "Short-form reels, long-form YouTube edits, color grading & sound design.",
     url: "https://wedreammedia.com/services/editing",
